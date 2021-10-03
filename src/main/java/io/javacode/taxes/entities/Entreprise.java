@@ -1,14 +1,19 @@
 package io.javacode.taxes.entities;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 
+@Entity
 public class Entreprise implements Serializable {
 
+    @Id
+    @GeneratedValue
     private Long code;
     private String nom;
     private String email;
     private String raisonSociale;
+    @OneToMany(mappedBy = "entreprise", fetch = FetchType.LAZY)
     private Collection<Taxe> taxes;
 
     public Entreprise() {
