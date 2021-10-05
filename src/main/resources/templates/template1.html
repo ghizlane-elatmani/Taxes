@@ -17,7 +17,6 @@
     <link rel="stylesheet" type="text/css" href="../static/css/myStyle.css" th:href="@{/css/myStyle.css}"/>
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
     <header>
         <div class="navbar navbar-default">
             <div class="container-fluid">
@@ -28,15 +27,13 @@
             </div>
         </div>
     </header>
-    <section th:fragment="content"></section>
+
+    <section layout:fragment="content"></section>
+
     <footer>
         <div class="navbar-fixed-bottom">
             <small>@Addresse de Votre Institution</small>
         </div>
     </footer>
-</div>
-<div layout:fragment="content">
-
-</div>
 </body>
 </html>
