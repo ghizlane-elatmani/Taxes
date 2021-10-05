@@ -18,18 +18,27 @@
     <link rel="stylesheet" type="text/css" href="../static/css/myStyle.css" th:href="@{/css/myStyle.css}"/>
 </head>
 <body>
-    <div layout:fragment="content">
-        <table class="table table-stripped">
-            <tr>
-                <th>Code</th> <th>Nom</th> <th>Raison Sociale</th> <th>Email</th>
-            </tr>
-            <tr th:each="e:${entrepriseList}">
-                <td th:text="${e.code}"></td>
-                <td th:text="${e.nom}"></td>
-                <td th:text="${e.raisonSociale}"></td>
-                <td th:text="${e.email}"></td>
-            </tr>
-        </table>
+    <div layout:fragment="content" class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Liste des entreprises</div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Code</th> <th>Nom</th> <th>Raison Sociale</th> <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="e:${entrepriseList}">
+                        <td th:text="${e.code}"></td>
+                        <td th:text="${e.nom}"></td>
+                        <td th:text="${e.raisonSociale}"></td>
+                        <td th:text="${e.email}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 </html>
