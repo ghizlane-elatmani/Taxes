@@ -36,15 +36,10 @@ public class TaxeController {
         return "entreprises";
     }
 
-//    @RequestMapping(value = "/chercher", method = RequestMethod.GET)
-//    public String chercher(Model model, String motCle,
-//                           @RequestParam(name="page", defaultValue="0") int page,
-//                           @RequestParam(name="size", defaultValue="4") int size){
-//
-//        Page<Entreprise> entreprisePage = entrepriseRepository
-//                .chercher("%"+motCle+"%", PageRequest.of(page, size));
-//
-//        return "entreprises";
-//    }
+    @RequestMapping(value = "/formEntreprise")
+    public String formEntreprise(Model model){
+        model.addAttribute("entreprise", new Entreprise());
+        return "formEntreprise";
+    }
 
 }
