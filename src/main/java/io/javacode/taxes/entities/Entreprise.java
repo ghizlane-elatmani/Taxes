@@ -1,6 +1,9 @@
 package io.javacode.taxes.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -10,8 +13,14 @@ public class Entreprise implements Serializable {
     @Id
     @GeneratedValue
     private Long code;
+    @NotNull
+    @Size(min = 2, max = 20)
     private String nom;
+    @NotNull
+    @Email
     private String email;
+    @NotNull
+    @Size(min = 2, max = 30)
     private String raisonSociale;
     @OneToMany(mappedBy = "entreprise", fetch = FetchType.LAZY)
     private Collection<Taxe> taxes;
