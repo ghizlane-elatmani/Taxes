@@ -32,4 +32,10 @@ public class TaxeController {
         return "entreprises";
     }
 
+    @RequestMapping(value = "/chercher", method = RequestMethod.GET)
+    public String chercher(Model model, String motCle){
+        //TODO
+        return "entreprises";
+    }
+
 }
