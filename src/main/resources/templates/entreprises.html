@@ -39,7 +39,7 @@
                 </table>
                 <div>
                     <ul class="nav nav-pills">
-                        <li th:each="p, status:${pages}">
+                        <li th:class="${pageCourante==status.index}?'active':''" th:each="p, status:${pages}">
                             <a th:href="@{/entreprises(page=${status.index},size=4)}" th:text="${status.index}"></a>
                         </li>
                     </ul>

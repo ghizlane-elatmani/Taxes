@@ -28,6 +28,7 @@ public class TaxeController {
 
         int[] pages = new int[entreprisesPage.getTotalPages()];
         model.addAttribute("pages", pages);
+        model.addAttribute("pageCourante", page);
         return "entreprises";
     }
 
