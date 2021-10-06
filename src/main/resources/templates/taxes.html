@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="~{template1.html}">
+<head>
+    <meta charset="utf-8">
+    <title>Entreprises</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="../static/css/myStyle.css" th:href="@{/css/myStyle.css}"/>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Liste des taxes</div>
+        <div class="panel-body">
+            <div class="container">
+                <form th:action="@{/entreprises}" method="get">
+                    <label>Mot Cle:</label>
+                    <input type="text" name="motCle"/>
+                    <button type="submit" class="btn btn-primary">Chercher</button>
+                </form>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th> <th>Titre</th> <th>Date</th> <th>Montant</th> <th>Type</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="t:${taxes}">
+                    <td th:text="${t.id}"></td>
+                    <td th:text="${t.titre}"></td>
+                    <td th:text="${t.dateTaxe}"></td>
+                    <td th:text="${t.montant}"></td>
+                    <td th:text="${t.class.simpleName}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <div>
+                <ul class="nav nav-pills">
+                    <li th:class="${pageCourante==status.index}?'active':''" th:each="p, status:${pages}">
+                        <a th:href="@{/entreprises(page=${status.index},motCle=${motCle})}" th:text="${status.index}"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

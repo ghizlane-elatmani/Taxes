@@ -1,6 +1,7 @@
 package io.javacode.taxes.web;
 
 import io.javacode.taxes.dao.EntrepriseRepository;
+import io.javacode.taxes.dao.TaxeRepository;
 import io.javacode.taxes.entities.Entreprise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,8 @@ public class TaxeController {
 
     @Autowired
     private EntrepriseRepository entrepriseRepository;
+    @Autowired
+    private TaxeRepository taxeRepository;
 
     @RequestMapping(value = "/entreprises", method = RequestMethod.GET)
     public String index(Model model,
@@ -51,6 +54,14 @@ public class TaxeController {
 
         entrepriseRepository.save(e);
         return "redirect:/entreprises";
+    }
+
+    @RequestMapping(value = "/taxes")
+    public String taxes(Model model, Long code){
+        Entreprise e = new Entreprise();
+        e.setCode(code);
+        model.addAttribute("taxes", taxeRepository.findByEntreprise(e));
+        return "taxes";
     }
 
 }
