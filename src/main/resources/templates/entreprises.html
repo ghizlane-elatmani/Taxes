@@ -23,7 +23,7 @@
             <div class="panel-heading">Liste des entreprises</div>
             <div class="panel-body">
                 <div class="container">
-                    <form th:action="@{/chercher}" method="get">
+                    <form th:action="@{/entreprises}" method="get">
                         <label>Mot Cle:</label>
                         <input type="text" name="motCle"/>
                         <button type="submit" class="btn btn-primary">Chercher</button>
@@ -47,7 +47,7 @@
                 <div>
                     <ul class="nav nav-pills">
                         <li th:class="${pageCourante==status.index}?'active':''" th:each="p, status:${pages}">
-                            <a th:href="@{/entreprises(page=${status.index},size=4)}" th:text="${status.index}"></a>
+                            <a th:href="@{/entreprises(page=${status.index},motCle=${motCle})}" th:text="${status.index}"></a>
                         </li>
                     </ul>
                 </div>

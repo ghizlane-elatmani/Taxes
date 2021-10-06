@@ -21,21 +21,30 @@ public class TaxeController {
 
     @RequestMapping(value = "/entreprises", method = RequestMethod.GET)
     public String index(Model model,
+                        @RequestParam(name="motCle", defaultValue="") String motCle,
                         @RequestParam(name="page", defaultValue="0") int page,
                         @RequestParam(name="size", defaultValue="4") int size){
-        Page<Entreprise> entreprisesPage = entrepriseRepository.findAll(PageRequest.of(page, size));
+
+        Page<Entreprise> entreprisesPage = entrepriseRepository
+                .chercher("%"+motCle+"%", PageRequest.of(page, size));
         model.addAttribute("entrepriseList", entreprisesPage.getContent());
 
         int[] pages = new int[entreprisesPage.getTotalPages()];
         model.addAttribute("pages", pages);
         model.addAttribute("pageCourante", page);
+        model.addAttribute("motCle", motCle);
         return "entreprises";
     }
 
-    @RequestMapping(value = "/chercher", method = RequestMethod.GET)
-    public String chercher(Model model, String motCle){
-        //TODO
-        return "entreprises";
-    }
+//    @RequestMapping(value = "/chercher", method = RequestMethod.GET)
+//    public String chercher(Model model, String motCle,
+//                           @RequestParam(name="page", defaultValue="0") int page,
+//                           @RequestParam(name="size", defaultValue="4") int size){
+//
+//        Page<Entreprise> entreprisePage = entrepriseRepository
+//                .chercher("%"+motCle+"%", PageRequest.of(page, size));
+//
+//        return "entreprises";
+//    }
 
 }
