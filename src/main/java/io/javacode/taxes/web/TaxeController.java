@@ -3,6 +3,7 @@ package io.javacode.taxes.web;
 import io.javacode.taxes.dao.EntrepriseRepository;
 import io.javacode.taxes.dao.TaxeRepository;
 import io.javacode.taxes.entities.Entreprise;
+import io.javacode.taxes.entities.Taxe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -57,11 +59,16 @@ public class TaxeController {
     }
 
     @RequestMapping(value = "/taxes")
-    public String taxes(Model model, Long code){
-        Entreprise e = new Entreprise();
-        e.setCode(code);
-        model.addAttribute("entreprises", entrepriseRepository.findAll());
-        model.addAttribute("taxes", taxeRepository.findByEntreprise(e));
+    public String taxes(Model model,
+                        @RequestParam(name = "code", defaultValue = "-1") Long code){
+        if(code==-1) {
+            model.addAttribute("taxes", new ArrayList<Taxe>());
+        }else{
+            Entreprise e = new Entreprise();
+            e.setCode(code);
+            model.addAttribute("entreprises", entrepriseRepository.findAll());
+            model.addAttribute("taxes", taxeRepository.findByEntreprise(e));
+        }
         return "taxes";
     }
 
