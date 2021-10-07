@@ -23,6 +23,9 @@
             <div th:if="${param.error}" class="text-danger">
                 Username or password incorrect
             </div>
+            <div th:if="${param.logout}" class="text-info">
+                You have been logout
+            </div>
             <form th:action="@{/login}" method="post">
                 <div class="form-group">
                     <label class="control-label">Username:</label>
