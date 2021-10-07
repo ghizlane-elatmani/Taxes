@@ -25,6 +25,9 @@
                     <li><a th:href="@{/taxes}">Taxes</a></li>
                     <li><a th:href="@{/formEntreprise}">Ajouter</a></li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a th:href="@{/login?logout}" th:text="${#httpServletRequest.remoteUser}"></a></li>
+                </ul>
             </div>
         </div>
     </header>
