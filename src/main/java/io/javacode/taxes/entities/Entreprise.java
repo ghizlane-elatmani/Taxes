@@ -1,5 +1,7 @@
 package io.javacode.taxes.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -50,6 +52,7 @@ public class Entreprise implements Serializable {
     public String getRaisonSociale() {
         return raisonSociale;
     }
+    @JsonIgnore
     public Collection<Taxe> getTaxes() {
         return taxes;
     }
